@@ -18,7 +18,9 @@ namespace pryGerhauser
         }
         private void firmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmFirma firma = new frmFirma();
+            firma.StartPosition = FormStartPosition.CenterScreen;
+            firma.ShowDialog();
         }
 
         private void galagaToolStripMenuItem_Click(object sender, EventArgs e)

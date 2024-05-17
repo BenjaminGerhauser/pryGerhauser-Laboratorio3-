@@ -72,7 +72,7 @@ namespace pryGerhauser
 				if (r.Next(1,400) == 3)
 				{
 					Size size = new Size(8, 14);
-                    bullets.Add(bullet.Create($"sprite/shootEnemy.png",size));
+                    bullets.Add(bullet.Create(@"../../../sprite/shootEnemy.png", size));
 				}
 				bullet.move(bullets,f,enemy,-8);
 			}

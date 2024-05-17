@@ -79,7 +79,7 @@ namespace pryGerhauser
             if (e.KeyCode == Keys.Space)
             {
                 Size size = new Size(8, 14);
-                bullets.Add(bullet.Create("sprite/disparo1.png", size));
+                bullets.Add(bullet.Create(@"../../../sprite/disparo1.png", size));
             }
         }
         private void timerDisparo_Tick_1(object sender, EventArgs e)
@@ -97,6 +97,7 @@ namespace pryGerhauser
             points = Collision.checkCollitionEnemy(bullets, enemies, lblPoints, progressBarNivel, lblLevel, this, points);
             Collision.checkCollitionNave(enemyBullets, naves, lblPoints, this, vidas, timerDisparo, lblPlayer.Text);
             pointsBoss = Collision.checkCollitionEnemy(bullets, Boss, lblPoints, progressBarNivel, lblLevel, this, points);
+
             enemy.shootEnemy(enemies, this);
             nivel = level.levelPoints(progressBarNivel, points, lblLevel, this);
             

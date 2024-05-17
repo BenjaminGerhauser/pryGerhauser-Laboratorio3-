@@ -15,7 +15,7 @@ namespace pryGerhauser
             objPj = new clsPj();
             PictureBox pbEnemy = new PictureBox();
             pbEnemy.Size = new Size(35, 35);
-            pbEnemy.Image = Image.FromFile($"sprite/nave2.png");
+            pbEnemy.Image = Image.FromFile(@"../../../sprite/nave2.png");
             pbEnemy.SizeMode = PictureBoxSizeMode.Zoom;
             pbEnemy.BackColor = Color.Transparent;
             objPj.Pb = pbEnemy;
@@ -45,7 +45,7 @@ namespace pryGerhauser
                
                 life = new PictureBox();
                 life.Location = new Point(x,f.Height-f.Height/8);
-                life.Image = Image.FromFile($"sprite/nave2.png");
+                life.Image = Image.FromFile(@"../../../sprite/nave2.png");
                 life.BackColor = Color.Transparent;
                 life.Size = new Size(25,25);
                 life.SizeMode = PictureBoxSizeMode.Zoom;

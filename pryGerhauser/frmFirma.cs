@@ -43,10 +43,10 @@ namespace pryGerhauser
             string rutaProyecto = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
 
-            DateTime fecha = Convert.ToDateTime(System.DateTime.Now.ToString("g")); 
+            string fecha = System.DateTime.Now.ToString("yyyy-MM-d-H.m.s");
             var sfd = new SaveFileDialog();
             sfd.Filter = "Image(*.jpg)|*.jpg|(*.*|*.*";
-            sfd.FileName = fecha.ToString();
+            sfd.FileName =  fecha.ToString();
             sfd.InitialDirectory = rutaProyecto;
             if (sfd.ShowDialog() == DialogResult.OK)
             {

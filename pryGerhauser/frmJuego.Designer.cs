@@ -40,6 +40,7 @@
             label5 = new Label();
             lblPlayer = new Label();
             label6 = new Label();
+            lblTime = new Label();
             SuspendLayout();
             // 
             // timerDisparo
@@ -147,15 +148,24 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.BackColor = Color.Black;
             label6.ForeColor = Color.Yellow;
-            label6.Location = new Point(170, 219);
+            label6.Location = new Point(263, 9);
             label6.Name = "label6";
-            label6.Size = new Size(67, 25);
-            label6.TabIndex = 10;
-            label6.Text = "PAUSE";
-            label6.Visible = false;
+            label6.Size = new Size(49, 15);
+            label6.TabIndex = 9;
+            label6.Text = "TIEMPO";
+            // 
+            // lblTime
+            // 
+            lblTime.AutoSize = true;
+            lblTime.BackColor = Color.Black;
+            lblTime.ForeColor = Color.Yellow;
+            lblTime.Location = new Point(319, 9);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(12, 15);
+            lblTime.TabIndex = 10;
+            lblTime.Text = "-";
             // 
             // frmJuego
             // 
@@ -163,6 +173,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(398, 507);
+            Controls.Add(lblTime);
             Controls.Add(label6);
             Controls.Add(lblPlayer);
             Controls.Add(label5);
@@ -177,7 +188,6 @@
             Name = "frmJuego";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmJuego";
-            Load += frmJuego_Load;
             KeyDown += frmJuego_KeyDown;
             ResumeLayout(false);
             PerformLayout();
@@ -193,7 +203,8 @@
         public Label lblLevel;
         private Label label5;
         public Label lblPlayer;
-        public Label label6;
         private System.Windows.Forms.Timer timerDisparo;
+        private Label label6;
+        public Label lblTime;
     }
 }

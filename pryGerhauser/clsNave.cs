@@ -9,10 +9,8 @@ namespace pryGerhauser
     internal class clsNave
     {
         clsPj objPj;
-        //Random r = new Random();
-        //clsPj player;
         public List<PictureBox> vidas = new List<PictureBox>();
-        public clsPj Create()
+        public clsPj Create(int multiplicador)
         {
             objPj = new clsPj();
             PictureBox pbEnemy = new PictureBox();
@@ -24,8 +22,7 @@ namespace pryGerhauser
             objPj.HP = 1;
             objPj.Lifes = 3;
             objPj.Point = -500;
-            objPj.Damage = 25;
-            //player = objPj;
+            objPj.Damage = 25*multiplicador;
             return objPj;
         }
         public void spawn(clsPj nave,Form f)
@@ -38,7 +35,6 @@ namespace pryGerhauser
             if (letra == "A" && player.Pb.Location.X>0){player.Pb.Location = new Point(player.Pb.Location.X - 15, player.Pb.Location.Y);}
             else if(letra == "D" && player.Pb.Location.X < f.Width - (player.Pb.Size.Width * 2)) 
             { player.Pb.Location = new Point(player.Pb.Location.X + 15, player.Pb.Location.Y);}
-            //player.Pb.Refresh();
         }
         public List<PictureBox> lifes(Form f,int lifes)
         {

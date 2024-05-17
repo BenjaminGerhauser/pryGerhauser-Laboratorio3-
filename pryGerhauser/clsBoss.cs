@@ -19,8 +19,7 @@ namespace pryGerhauser
             Boss = new clsPj();
             PictureBox pbEnemy = new PictureBox();
             pbEnemy.Size = new Size(100, 100);
-            pbEnemy.Image = Image.FromFile($"C:sprite/enemy{r.Next(4, 7)}.gif");
-            //pbEnemy.Image = Image.FromFile($"C:sprite/enemy5-unscreen.gif");
+            pbEnemy.Image = Image.FromFile($"C:sprite/boss{r.Next(1, 4)}.png");
             pbEnemy.SizeMode = PictureBoxSizeMode.Zoom;
             pbEnemy.BackColor = Color.Transparent;
             Boss.Pb = pbEnemy;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace pryGerhauser
 {
@@ -12,8 +13,12 @@ namespace pryGerhauser
 		private clsPj objPj;
 		private clsPj Boss;
         int contador = 0;
+        int contadorY = 1;
+        int contadorX = 0;
         Random r = new Random();
 		public List<clsPj> bullets = new List<clsPj>();
+		//public List<clsPj> enemiesAdd = new List<clsPj>();
+		//public List<clsPj> enemiesAddCopy = new List<clsPj>();
         clsBullet bullet = new clsBullet();
 		
 
@@ -35,37 +40,36 @@ namespace pryGerhauser
 		}
 		public void spawn(List<clsPj> enemies, Form f)
 		{
-            for (int i = 0; i < 6; i++)
-            {
-                clsPj nuevo;
-                nuevo = Create();
-                enemies.Add(nuevo);
-            }
-
-			int contador = 0;
+			for (int i = 0; i < 6; i++)
+			{
+				clsPj nuevo;
+				nuevo = Create();
+				enemies.Add(nuevo);
+			}
 			foreach (clsPj enemy in enemies)
 			{
-				foreach (clsPj enemy2 in enemies)
+				if (!f.Contains(enemy.Pb))
 				{
-					if (enemy.Pb.Bounds.IntersectsWith(enemy2.Pb.Bounds) && enemy != enemy2 && !f.Contains(enemy.Pb) && !f.Contains(enemy2.Pb))
-					{
-						enemy.Pb.Location = new Point(f.Width / 36 + (enemy.Pb.Size.Width * 2) * contador + enemy.Pb.Size.Width, r.Next(f.Height / 10, (f.Height / 10) * 3));
-						f.Controls.Add(enemy.Pb);
-					}
-					else if (!f.Contains(enemy.Pb) && !f.Contains(enemy2.Pb))
-					{
-						enemy.Pb.Location = new Point(f.Width / 36 + (enemy.Pb.Size.Width * 2) * contador, r.Next(f.Height / 10, (f.Height / 10) * 3));
-						f.Controls.Add(enemy.Pb);
-					}
+					enemy.Pb.Location = new Point(f.ClientSize.Width / 36 + (enemy.Pb.Size.Width * 2) * contadorX, r.Next(55 * contadorY, (55*contadorY)+enemy.Pb.Height));
+					f.Controls.Add(enemy.Pb);
+					contadorX++;
+					if (contadorX == 6) contadorX = 0;
 				}
-				contador++;
+				else
+				{
+					enemy.Pb.Location = enemy.Pb.Location;
+
+                }
 			}
+			contadorY++;
+			if (contadorY == 4) contadorY = 1;
 		}
-		public void shootEnemy(List<clsPj> enemies, Form f)
+
+        public void shootEnemy(List<clsPj> enemies, Form f)
 		{
 			foreach (clsPj enemy in enemies)
 			{
-				if (r.Next(1,300) == 3)
+				if (r.Next(1,400) == 3)
 				{
 					Size size = new Size(8, 14);
                     bullets.Add(bullet.Create($"sprite/shootEnemy.png",size));
@@ -103,5 +107,37 @@ namespace pryGerhauser
 				enemies.Remove(enemy);
 			}
 		}
+		//private void positionControls(List<clsPj> enemies, Form f)
+		//{
+		//	foreach (clsPj enemy in enemies)
+		//	{
+		//		int x, y;
+		//		x = r.Next(f.Width / 24 + (enemy.Pb.Size.Width * 2) * contador, f.Width / 16 + (enemy.Pb.Size.Width * 2) * contador);
+		//		y = r.Next(f.Height / 10, (f.Height / 10) * 3);
+
+		//		while (IsColliding(enemy, x, y, enemiesAdd)) ;
+
+		//		enemy.Pb.Location = new Point(x, y);
+		//		contador++;
+		//		enemiesAdd.Add(enemy);
+		//	}
+		//}
+		//private bool IsColliding(clsPj enemy, int x, int y, List<clsPj> enemies)
+		//{
+		//	foreach (clsPj enemy2 in enemies)
+		//	{
+		//		if (enemy == enemy2) continue;
+
+		//		Rectangle controlRect = new Rectangle(x, y, enemy.Pb.Size.Width, enemy.Pb.Size.Height);
+		//		Rectangle otherRect = new Rectangle(enemy2.Pb.Location, enemy2.Pb.Size);
+
+		//		if (controlRect.IntersectsWith(otherRect))
+		//		{
+		//			return true;
+		//		}
+		//	}
+
+		//	return false;
+		//}
 	}
 }

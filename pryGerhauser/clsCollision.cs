@@ -9,7 +9,6 @@ namespace pryGerhauser
 {
     internal class clsCollision
     {
-        //List<clsPj> copyNaves = new List<clsPj>(naves);
         clsNave claseNave = new clsNave();
         clsScores clsScores = new clsScores();
         int globalPoints = 0;
@@ -33,7 +32,6 @@ namespace pryGerhauser
                             enemies.Remove(enemy);
                             points += enemy.Point;
                             lblPoints.Text = points.ToString();
-                            //clsLevel.levelPoints(bar, enemy.Point,lblLevel);
                             return enemy.Point;
                         }
                         else if (enemy.HP > 25)
@@ -60,14 +58,11 @@ namespace pryGerhauser
                 {
                     if (bullet.Pb.Bounds.IntersectsWith(nave.Pb.Bounds))
                     {
-                        //nave.Pb.Dispose();
                         
                         nave.Lifes--;
                         bullet.Pb.Dispose();
                         bullets.Remove(bullet);
-                        //naves.Remove(nave);
-                        //points += nave.Point;
-                        //lblPoints.Text = points.ToString();
+                        
                         claseNave.spawn(nave,f);
                         int lifes = nave.Lifes;
                         foreach (PictureBox pb in vidas)
@@ -81,7 +76,6 @@ namespace pryGerhauser
                             frmFinJuego fin = new frmFinJuego();
                             f.Close();
                             fin.ShowDialog();
-                            fin.BringToFront();
                         }
                     }
                     else if(bullet.Pb.Location.Y >= f.Size.Height)

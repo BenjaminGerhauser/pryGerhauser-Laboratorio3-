@@ -34,11 +34,12 @@
             lblPoints = new Label();
             label2 = new Label();
             label3 = new Label();
-            progressBar1 = new ProgressBar();
+            progressBarNivel = new ProgressBar();
             label4 = new Label();
             lblLevel = new Label();
             label5 = new Label();
             lblPlayer = new Label();
+            label6 = new Label();
             SuspendLayout();
             // 
             // timerDisparo
@@ -75,9 +76,9 @@
             label2.ForeColor = Color.Yellow;
             label2.Location = new Point(144, 29);
             label2.Name = "label2";
-            label2.Size = new Size(75, 15);
+            label2.Size = new Size(78, 15);
             label2.TabIndex = 2;
-            label2.Text = "HIGH SCORE";
+            label2.Text = "HIGH SCORE:";
             // 
             // label3
             // 
@@ -90,20 +91,21 @@
             label3.TabIndex = 3;
             label3.Text = "0";
             // 
-            // progressBar1
+            // progressBarNivel
             // 
-            progressBar1.Location = new Point(264, 29);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(123, 15);
-            progressBar1.Style = ProgressBarStyle.Continuous;
-            progressBar1.TabIndex = 4;
+            progressBarNivel.ForeColor = Color.Yellow;
+            progressBarNivel.Location = new Point(263, 44);
+            progressBarNivel.Name = "progressBarNivel";
+            progressBarNivel.Size = new Size(123, 10);
+            progressBarNivel.Style = ProgressBarStyle.Continuous;
+            progressBarNivel.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Black;
             label4.ForeColor = Color.Yellow;
-            label4.Location = new Point(264, 9);
+            label4.Location = new Point(263, 29);
             label4.Name = "label4";
             label4.Size = new Size(41, 15);
             label4.TabIndex = 5;
@@ -114,7 +116,7 @@
             lblLevel.AutoSize = true;
             lblLevel.BackColor = Color.Black;
             lblLevel.ForeColor = Color.Yellow;
-            lblLevel.Location = new Point(311, 9);
+            lblLevel.Location = new Point(310, 29);
             lblLevel.Name = "lblLevel";
             lblLevel.Size = new Size(13, 15);
             lblLevel.TabIndex = 6;
@@ -142,39 +144,56 @@
             lblPlayer.TabIndex = 8;
             lblPlayer.Text = "-";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.Yellow;
+            label6.Location = new Point(170, 219);
+            label6.Name = "label6";
+            label6.Size = new Size(67, 25);
+            label6.TabIndex = 10;
+            label6.Text = "PAUSE";
+            label6.Visible = false;
+            // 
             // frmJuego
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(398, 507);
+            Controls.Add(label6);
             Controls.Add(lblPlayer);
             Controls.Add(label5);
             Controls.Add(lblLevel);
             Controls.Add(label4);
-            Controls.Add(progressBar1);
+            Controls.Add(progressBarNivel);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(lblPoints);
             Controls.Add(label1);
+            DoubleBuffered = true;
             Name = "frmJuego";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmJuego";
-            KeyDown += frmJuego_KeyDown_1;
+            Load += frmJuego_Load;
+            KeyDown += frmJuego_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.Timer timerDisparo;
         private Label label1;
         public Label lblPoints;
         private Label label2;
         public Label label3;
-        private ProgressBar progressBar1;
+        private ProgressBar progressBarNivel;
         private Label label4;
         public Label lblLevel;
         private Label label5;
         public Label lblPlayer;
+        public Label label6;
+        private System.Windows.Forms.Timer timerDisparo;
     }
 }

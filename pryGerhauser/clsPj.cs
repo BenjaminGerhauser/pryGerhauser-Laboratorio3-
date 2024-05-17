@@ -39,6 +39,5 @@ namespace pryGerhauser
             get { return pb; }
             set { pb = value; }
         }
-
     }
 }

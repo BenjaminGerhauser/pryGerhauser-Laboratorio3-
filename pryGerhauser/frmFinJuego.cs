@@ -19,8 +19,8 @@ namespace pryGerhauser
 
         private void btnYes_Click(object sender, EventArgs e)
         {
-            frmJuego f = new frmJuego();
-            f.Show();
+            frmNombre nombre = new frmNombre();
+            nombre.Show();
             this.Close();
         }
 

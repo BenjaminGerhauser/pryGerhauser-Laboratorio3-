@@ -8,19 +8,23 @@ namespace pryGerhauser
 {
     internal class clsLevel
     {
-        public int level { get; set; }
-        public bool endLevel { get; set; }
-        public int pointAux = 0;
-        public void levelBar(ProgressBar bar)
+        public int Level = 1;
+        public void levelBar(ProgressBar bar, Label lblLevel,Form f)
         {
-            bar.Maximum = 80 + (20 * level);
+            bar.Maximum = 80 + (20 * Level);
+            lblLevel.Text = Level.ToString();
         }
-        public void levelPoints(ProgressBar bar,int points) 
+        public int levelPoints(ProgressBar bar, int points, Label lblLevel,Form f)
         {
-            pointAux = bar.Value + points;
-            if (pointAux >= bar.Maximum)endLevel = true;
-            else { bar.Value = pointAux; endLevel = false; }
-                
+            if (bar.Value + points > bar.Maximum)
+            {
+                bar.Value = 0;
+                Level += 1;
+                levelBar(bar, lblLevel,f);
+            }
+            else{bar.Value += points;}
+            return Level;
         }
+        
     }
 }

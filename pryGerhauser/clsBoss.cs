@@ -10,8 +10,10 @@ namespace pryGerhauser
     {
         private clsPj Boss;
         Random r = new Random();
-        int contador = 207;
-
+		clsBullet bullet = new clsBullet();
+        public List<clsPj> bullets = new List<clsPj>();
+        int contador,first;
+        int move = 1;
         public clsPj boss(int multiplicador)
         {
             Boss = new clsPj();
@@ -30,29 +32,39 @@ namespace pryGerhauser
         }
         public void moveBoss(List<clsPj> boss, Form f)
         {
-            foreach (clsPj Boss in boss)
+            foreach (clsPj enemy in boss)
             {
-                if (Boss.Pb.Location.X <= f.Width - Boss.Pb.Size.Width - 7 /*&& contador > f.Width/2*/)
-                {
-                    Boss.Pb.Location = new Point(Boss.Pb.Location.X + 5, Boss.Pb.Location.Y);
-                    //contador += 5;
-                    //if (contador -6 == f.Width - Boss.Pb.Size.Width - 7) contador = f.Width/2;
-                }
-                else if (Boss.Pb.Location.X > 7 /*&& contador<=f.Width/2*/)
-                {
-                    Boss.Pb.Location = new Point(Boss.Pb.Location.X - 5, Boss.Pb.Location.Y);
-                    //contador -= 5; 
-                    //if (contador == 7) contador = f.Width/2 +1;
-
-                }
+                if (enemy.Pb.Location.X == f.Size.Width - enemy.Pb.Size.Width -30) move = -1;
+                else if (enemy.Pb.Location.X == 10) move = 1;
+                enemy.Pb.Location = new Point(enemy.Pb.Location.X + move, enemy.Pb.Location.Y);
             }
         }
-        public void spawnBoss(List<clsPj> enemies, Form f)
+        public void spawnBoss(List<clsPj> Boss, Form f)
         {
-            foreach (clsPj enemy in enemies)
+            foreach (clsPj enemy in Boss)
             {
                 enemy.Pb.Location = new Point(f.Width/2, r.Next(f.Height / 10, (f.Height / 10) * 3));
                 f.Controls.Add(enemy.Pb);
+            }
+        }
+        public void shootBoss(List<clsPj> Boss, Form f,int multiplicador)
+        {
+            foreach (clsPj enemy in Boss)
+            {
+                if (multiplicador > 400) multiplicador = 400;
+                if (r.Next(1, 400/multiplicador) == 1)
+                {
+                    if (r.Next(1, 300) == 1)
+                    {
+                        Size size = new Size(8, 150);
+                        bullets.Add(bullet.Create($"sprite/laser.png", size));
+                    }
+                    else {
+                        Size size = new Size(8, 14);
+                        bullets.Add(bullet.Create($"sprite/shootEnemy.png",size)); 
+                    }
+                }
+                bullet.move(bullets, f, enemy, -10);
             }
         }
     }

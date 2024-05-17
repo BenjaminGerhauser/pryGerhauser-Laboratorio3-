@@ -11,11 +11,12 @@ namespace pryGerhauser
     {
         //List<clsPj> copyNaves = new List<clsPj>(naves);
         clsNave claseNave = new clsNave();
-        clsLevel clsLevel = new clsLevel();
-        public void checkCollitionEnemy(List<clsPj> bullets, List<clsPj> enemies,Label lblPoints,int pointsLevel,ProgressBar bar)
+        clsScores clsScores = new clsScores();
+        int globalPoints = 0;
+        public int checkCollitionEnemy(List<clsPj> bullets, List<clsPj> enemies,Label lblPoints,ProgressBar bar,Label lblLevel,Form f,int POINTS)
         {
-            int points = Convert.ToInt32(lblPoints.Text);
-
+            int points = POINTS;
+            globalPoints = POINTS;
             List<clsPj> copyEnemies = new List<clsPj>(enemies);
             List<clsPj> copyBullets = new List<clsPj>(bullets);
             foreach (clsPj bullet in copyBullets)
@@ -32,7 +33,8 @@ namespace pryGerhauser
                             enemies.Remove(enemy);
                             points += enemy.Point;
                             lblPoints.Text = points.ToString();
-                            clsLevel.levelPoints(bar, enemy.Point);
+                            //clsLevel.levelPoints(bar, enemy.Point,lblLevel);
+                            return enemy.Point;
                         }
                         else if (enemy.HP > 25)
                         {
@@ -41,10 +43,12 @@ namespace pryGerhauser
                             enemy.HP -= bullet.Damage;
                         }
                     }
+                    else if(bullet.Pb.Location.Y >= f.Size.Height + bullet.Pb.Size.Height) { bullet.Pb.Dispose() ; bullets.Remove(bullet) ; } 
                 }
             }
+            return 0;
         }
-        public void checkCollitionNave(List<clsPj> bullets, List<clsPj> naves, Label lblPoints,Form f,List<PictureBox> vidas)
+        public void checkCollitionNave(List<clsPj> bullets, List<clsPj> naves, Label lblPoints,Form f,List<PictureBox> vidas, System.Windows.Forms.Timer timer,string playeName)
         {
             int points = Convert.ToInt32(lblPoints.Text);
             List<clsPj> copyNaves = new List<clsPj>(naves);
@@ -72,10 +76,18 @@ namespace pryGerhauser
                         }
                         if(nave.Lifes == 0)
                         {
-                            f.Close();
+                            clsScores.saveScore(globalPoints,playeName);
+                            timer.Stop();
                             frmFinJuego fin = new frmFinJuego();
+                            f.Close();
                             fin.ShowDialog();
+                            fin.BringToFront();
                         }
+                    }
+                    else if(bullet.Pb.Location.Y >= f.Size.Height)
+                    {
+                        bullet.Pb.Dispose();
+                        bullets.Remove(bullet);
                     }
                 }
             }

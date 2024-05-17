@@ -9,13 +9,13 @@ namespace pryGerhauser
     internal class clsBullet
     {
         clsPj objPj;
-        public clsPj Create(string bala)
+        public clsPj Create(string bala,Size size)
         {
             objPj = new clsPj();
             PictureBox pbEnemy = new PictureBox();
-            pbEnemy.Size = new Size(8, 14);
+            pbEnemy.Size = size;
             pbEnemy.Image = Image.FromFile(bala);
-            pbEnemy.SizeMode = PictureBoxSizeMode.Zoom;
+            pbEnemy.SizeMode = PictureBoxSizeMode.StretchImage;
             pbEnemy.BackColor = Color.Transparent;
             objPj.Pb = pbEnemy;
             objPj.HP = 0;
@@ -32,6 +32,15 @@ namespace pryGerhauser
                 bullet.Pb.Location = new Point(bullet.Pb.Location.X, bullet.Pb.Location.Y - direccion);
                 f.Controls.Add(bullet.Pb);
                 bullet.Pb.Refresh();
+            }
+        }
+        public void deleteBullets(List<clsPj> bullets, Form f)
+        {
+            List<clsPj> copyBullets = new List<clsPj>(bullets);
+            foreach (clsPj bullet in copyBullets)
+            {
+                bullet.Pb.Dispose();
+                bullets.Remove(bullet);
             }
         }
     }

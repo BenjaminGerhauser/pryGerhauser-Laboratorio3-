@@ -16,5 +16,15 @@ namespace pryGerhauser
         {
             InitializeComponent();
         }
+        private void firmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void galagaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNombre nombre = new frmNombre();
+            nombre.Show();
+        }
     }
 }

@@ -12,7 +12,6 @@ namespace pryGerhauser
         //Random r = new Random();
         //clsPj player;
         public List<PictureBox> vidas = new List<PictureBox>();
-
         public clsPj Create()
         {
             objPj = new clsPj();
@@ -37,7 +36,8 @@ namespace pryGerhauser
         public void move(string letra,clsPj player,Form f)
         {
             if (letra == "A" && player.Pb.Location.X>0){player.Pb.Location = new Point(player.Pb.Location.X - 15, player.Pb.Location.Y);}
-            else if(letra == "D" && player.Pb.Location.X < f.Width - (player.Pb.Size.Width * 2)) { player.Pb.Location = new Point(player.Pb.Location.X + 15, player.Pb.Location.Y);}
+            else if(letra == "D" && player.Pb.Location.X < f.Width - (player.Pb.Size.Width * 2)) 
+            { player.Pb.Location = new Point(player.Pb.Location.X + 15, player.Pb.Location.Y);}
             //player.Pb.Refresh();
         }
         public List<PictureBox> lifes(Form f,int lifes)

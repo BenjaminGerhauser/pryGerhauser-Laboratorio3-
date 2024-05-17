@@ -16,24 +16,16 @@ namespace pryGerhauser
         {
             InitializeComponent();
         }
-        private string playerName;
-         public string PlayerName
-        {
-            get { return playerName; }
-            set { playerName = value; }
-        }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            frmJuego j = new frmJuego();
-            j.lblPlayer.Text = txtName.Text;
-            this.Hide();
-            j.ShowDialog();
+            if (txtName.Text == "") { MessageBox.Show("Ingrese un nombre"); }
+            else
+            {
+                frmJuego j = new frmJuego();
+                j.lblPlayer.Text = txtName.Text;
+                this.Hide();
+                j.ShowDialog();
+            }
         }
-
-       
-
-
-
-
     }
 }
